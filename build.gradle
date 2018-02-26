@@ -1,13 +1,6 @@
-buildscript {
-	ext {
-		springBootVersion = '1.5.10.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+plugins {
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+    id 'com.gorylenko.gradle-git-properties' version '1.4.17'
 }
 
 apply plugin: 'java'
@@ -22,9 +15,9 @@ repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
 	runtime('com.microsoft.sqlserver:mssql-jdbc')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
