@@ -1,10 +1,12 @@
 package na.org.ecb.complianceauditingportal.database;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import na.org.ecb.complianceauditingportal.json.LocalDateTimeSerializer;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +21,6 @@ public class Report {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    // private Long userId; // @todo table not jet implemented
     // private Long licenseeId // @todo table not jet implemented
 
     @Getter
@@ -31,6 +32,11 @@ public class Report {
     @Getter
     @Setter
     private String name;  // @todo remove when usertable is available
+
+    @Getter
+    @Setter
+    @ManyToOne(optional = false)
+    private User user;
 
     @Getter
     @OneToMany(

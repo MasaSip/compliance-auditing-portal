@@ -34,4 +34,14 @@ public class NonCompliance {
     @Getter
     private UUID media_link;
 
+    protected NonCompliance()
+    {
+
+    }
+
+    public NonCompliance(Report report, String question)
+    {
+        this.report = report;
+        this.question = question;
+    }
 }
