@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.config.Projection;
 public interface NonComplianceProjection {
     Long getId();
 
-    String getQuestion();
+    String getComment();
 
     Report getReport();
 }

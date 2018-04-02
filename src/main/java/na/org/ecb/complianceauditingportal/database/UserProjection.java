@@ -8,4 +8,6 @@ public interface UserProjection {
     Long getId();
 
     String getUsername();
+    String getFirstName();
+    String getLastName();
 }

@@ -36,6 +36,8 @@ public class CommandLineRunnerAddUsers implements CommandLineRunner {
             user = new User("User",passwordEncoder.encode("password"));
             // authorization: Basic VXNlcjpwYXNzd29yZA==
             user.setEmail("user@example.com");
+            user.setFirstName("us");
+            user.setLastName("er");
             user.getRoles().add(new UserRole(user, "ROLE_USER"));
             userRepository.save(user);
         }
@@ -45,6 +47,8 @@ public class CommandLineRunnerAddUsers implements CommandLineRunner {
             adminUser = new User("Admin",passwordEncoder.encode("password"));
             // authorization: Basic QWRtaW46cGFzc3dvcmQ=
             adminUser.setEmail("admin@example.com");
+            adminUser.setFirstName("ad");
+            adminUser.setLastName("min");
             adminUser.getRoles().add(new UserRole(adminUser, "ROLE_USER"));
             adminUser.getRoles().add(new UserRole(adminUser, "ROLE_ADMIN"));
             userRepository.save(adminUser);

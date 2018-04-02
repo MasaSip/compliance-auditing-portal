@@ -14,21 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "USERS")
 public class User {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID")
     private long id;
 
     @Setter
     @Getter
     @NotEmpty(message = "username is required")
-    @Column(unique = true)
+    @Column(unique = true, name = "USERNAME")
     private String username;
 
     @Getter
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty(message = "password is required")
+    @Column(name = "PASSWORD")
     private String password;
 
 
@@ -47,7 +50,20 @@ public class User {
     @Setter
     @Getter
     @NotEmpty(message = "email is required")
+    @Column(name = "EMAIL")
     private String email;
+
+    @Setter
+    @Getter
+    @NotEmpty(message = "First name is required")
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Setter
+    @Getter
+    @NotEmpty(message = "Last name is required")
+    @Column(name = "last_name")
+    private String lastName;
 
     @Getter
     @OneToMany(
