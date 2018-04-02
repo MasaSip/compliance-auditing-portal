@@ -59,3 +59,4 @@ componentDidMount() {
         )
 }
 ```
+Examples how to use these api can be found in (./src/main/resources/static/examples)
