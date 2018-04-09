@@ -2,48 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Check login</title>
 </head>
 <body>
+<script src="api.js"></script>
 <script>
-    // Rest is stateless. So username and password have to be part of every call to the api.
-    function fetch_request(username, password) {
-        // var username = "User";
-        // var password = "password";
+    function check_login(username, password) {
         var apiUrl='http://localhost:8080';
-        var url = apiUrl + "/api/users/search/findByUsername?username=" + username;
 
-        fetch(url, {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + window.btoa(username + ":" + password)
-            })
-        }).then(function(response){
-            if(response.status != 200) {
-                console.error('Error: Http response is ' + response.status);
-                return null;
-            } else {
-                return response.json();
-            }
-        })
-        .catch(error => console.error('Error:', error))
-        .then(function(response) {
-            if(response == null)
-                return;
-            console.log('Success:', response);
-            console.log('User resource:', response._links.self.href);
+        check_login_request(apiUrl, username, password)
+            .then(function(response){
+            console.log(response);
         });
     }
 
 </script>
-Please open the Console pannel
+Please open the Console panel
 <ul>
     <li>Chrome on Mac: Command+Option+J</li>
     <li>Chrome on Windows or Linux: Control+Shift+J</li>
 </ul>
 and press a button <br>
-<button type="button" onclick={fetch_request('User','password')} >Send authenticated request</button>
-<button type="button" onclick={fetch_request('User','wrong')} >Send wrong password request</button>
-</body>
+<button type="button" onclick={check_login('User','password')} >Send authenticated request</button>
+<button type="button" onclick={check_login('User','wrong')} >Send wrong password request</button>
+
 </html>
