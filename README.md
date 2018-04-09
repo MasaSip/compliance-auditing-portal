@@ -28,4 +28,4 @@ gradlew.bat bootRun
 
 # Api needs authentication by default 
 
-Examples how to use these api can be found in (./src/main/resources/static/examples)
+Examples how to use these api can be found in [src/main/resources/static/examples](src/main/resources/static/examples)
