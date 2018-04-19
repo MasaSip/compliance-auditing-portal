@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check login</title>
+</head>
+<body>
+<script src="api.js"></script>
+<script>
+    function check_login(username, password) {
+        var apiUrl='http://localhost:8080';
+
+        check_login_request(apiUrl, username, password)
+            .then(function(response){
+            console.log(response);
+        });
+    }
+
+</script>
+Please open the Console panel
+<ul>
+    <li>Chrome on Mac: Command+Option+J</li>
+    <li>Chrome on Windows or Linux: Control+Shift+J</li>
+</ul>
+and press a button <br>
+<button type="button" onclick={check_login('User','password')} >Send authenticated request</button>
+<button type="button" onclick={check_login('User','wrong')} >Send wrong password request</button>
+
+</html>

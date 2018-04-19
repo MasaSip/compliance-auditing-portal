@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add report</title>
+</head>
+<body>
+<script src="api.js"></script>
+<script>
+    function add_report() {
+        var username="User";
+        var password="password";
+        var apiUrl='http://localhost:8080';
+
+        // get user details for userUri. This should be cached!
+        check_login_request(apiUrl, username, password)
+            .then(function(userDetails){
+                var userUri= userDetails._links.self.href;
+                // now add a report
+                add_report_request(apiUrl, username, password, userUri, "Report 1 name")
+                    .then(function(reportDetails) {
+                        var reportUri = reportDetails._links.self.href;
+                        add_non_compliance_request(apiUrl, username, password, reportUri, "comment 1");
+                        add_non_compliance_request(apiUrl, username, password, reportUri, "comment 2");
+                        add_non_compliance_request(apiUrl, username, password, reportUri, "comment 3");
+                        add_non_compliance_request(apiUrl, username, password, reportUri, "comment 4");
+                    });
+                // now another a report
+                add_report_request(apiUrl, username, password, userUri, "Report 2 name")
+                    .then(function(reportUri) {
+
+                    });
+            });
+    }
+
+</script>
+Please open the Console panel
+<ul>
+    <li>Chrome on Mac: Command+Option+J</li>
+    <li>Chrome on Windows or Linux: Control+Shift+J</li>
+</ul>
+and press a button <br>
+<button type="button" onclick={add_report()} >Add report request</button>
+</body>
+</html>
