@@ -13,15 +13,16 @@ function check_login_request(apiUrl, username, password) {
             'Content-Type': 'application/json',
             'Authorization': 'Basic ' + window.btoa(username + ":" + password)
         })
-    }).then(function(response){
-        if(response.status != 200) {
+    }).then(function (response) {
+        if (response.status != 200) {
             console.error('Error: Http response is ' + response.status);
             return null;
         } else {
             return response.json();
         }
-    })
-        .catch(error => console.error('Error:', error));
+    }).catch(function (error) {
+        console.error('Error:', error)
+    });
 }
 
 // Rest is stateless. So username and password have to be part of every call to the api.
@@ -49,8 +50,9 @@ function add_report_request(apiUrl, username, password, userUri, reportName) {
         } else {
             return response.json();
         }
-    })
-        .catch(error => console.error('Error:', error))
+    }).catch(function (error) {
+        console.error('Error:', error)
+    });
 }
 
 // Rest is stateless. So username and password have to be part of every call to the api.
@@ -76,6 +78,7 @@ function add_non_compliance_request(apiUrl, username, password, reportUri, comme
         } else {
             return response.json();
         }
-    })
-        .catch(error => console.error('Error:', error))
+    }).catch(function (error) {
+        console.error('Error:', error)
+    });
 }
