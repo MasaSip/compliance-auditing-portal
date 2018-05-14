@@ -47,12 +47,42 @@ public class Report {
     @JoinColumn(name = "user_id")
     private User user;
 
+//    @Getter
+//    @OneToMany(
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true,
+//            mappedBy = "report"
+//    )
+//    private List<NonCompliance> nonCompliances = new ArrayList<>();
+
+    // ugly code that leaves the database schema to show some basic functions
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    @Setter
+    @Getter
+    @Column(name = "senior_engineer_email")
+    private String senior_engineer_email;
+
+    @Setter
+    @Getter
+    @Column(name = "manager_email")
+    private String manager_email;
+
+    @Setter
+    @Getter
+    @Column(name = "general_manager_email")
+    private String general_manager_email;
+
+    @Setter
+    @Getter
+    @Column(name = "ceo_email")
+    private String ceo_email;
+
     @Getter
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             mappedBy = "report"
     )
-    private List<NonCompliance> nonCompliances = new ArrayList<>();
-
+    private List<Facility> facilities = new ArrayList<>();
 }

@@ -7,6 +7,4 @@ public interface NonComplianceProjection {
     Long getId();
 
     String getComment();
-
-    Report getReport();
 }

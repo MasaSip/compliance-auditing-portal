@@ -16,13 +16,19 @@ public interface ReportsRepository extends PagingAndSortingRepository<Report, Lo
     );
 
     @Override
-    @PreAuthorize("hasRole('ROLE_USER') AND (#report.user.username == authentication.name)")
-    Report save(Report report);
+//    @PreAuthorize("hasRole('ROLE_USER') AND (#report.user.username == authentication.name)")
+//    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("#report.user.username == authentication.name")
+    Report save(
+            @Param("report") Report report
+    );
 
     @Override
     @PreAuthorize("hasRole('ROLE_USER') AND (#report.user.username == authentication.name)")
     /**
      * Only the user who owns the report should be able to delete it.
      */
-    void delete(Report report);
+    void delete(
+            @Param("report") Report report
+    );
 }
