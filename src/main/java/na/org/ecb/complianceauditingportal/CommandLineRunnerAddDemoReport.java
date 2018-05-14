@@ -1,6 +1,7 @@
 package na.org.ecb.complianceauditingportal;
 
 import na.org.ecb.complianceauditingportal.auth.AuthenticatedUserRepository;
+import na.org.ecb.complianceauditingportal.database.Facility;
 import na.org.ecb.complianceauditingportal.database.NonCompliance;
 import na.org.ecb.complianceauditingportal.database.Report;
 import na.org.ecb.complianceauditingportal.database.User;
@@ -42,7 +43,7 @@ public class CommandLineRunnerAddDemoReport implements CommandLineRunner {
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 "User",
-                "ROLE_ADMIN",
+                null,
                 authorities
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -55,9 +56,16 @@ public class CommandLineRunnerAddDemoReport implements CommandLineRunner {
             report.setUser(user);
             report.setName("Test Report 1");
 
-            report.getNonCompliances().add(
-                    new NonCompliance(report, "what is the Problem?")
+            Facility facility = new Facility(report,"Facility 1", "Description for Facility 1");
+
+//            report.getFacilities().add(
+//                    new Facility("Facility 1", "description for facility"
+//            )
+            facility.getNonCompliances().add(
+                    new NonCompliance(facility, "what is the Problem?")
             );
+
+            report.getFacilities().add(facility);
 
             reportsRepository.save(report);
         }

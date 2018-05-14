@@ -40,9 +40,22 @@ CREATE TABLE IF NOT EXISTS report(
       substation NVARCHAR(20),
       rdate DATE,
       start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      end_time TIMESTAMP NULL
+      end_time TIMESTAMP NULL,
+
+
+       senior_engineer_email NVARCHAR(50),
+       manager_email NVARCHAR(50),
+       general_manager_email NVARCHAR(50),
+       ceo_email NVARCHAR(50)
 );
 
+CREATE TABLE IF NOT EXISTS facility (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  report_id INT, FOREIGN KEY(report_id) REFERENCES report(report_id),
+  name NVARCHAR(200),
+  description TEXT
+
+);
 
 CREATE TABLE IF NOT EXISTS compliance (
        comp_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +63,13 @@ CREATE TABLE IF NOT EXISTS compliance (
        yes_id BOOLEAN NOT NULL DEFAULT FALSE,
        comment NVARCHAR(255),
        report_id INT, FOREIGN KEY(report_id) REFERENCES report(report_id),
-       media_files BLOB
+       media_files BLOB,
+
+
+
+       facility_id INT, FOREIGN KEY(facility_id) REFERENCES facility(id),
+       compliance_date TIMESTAMP NULL,
+       name NVARCHAR(255)
 );
 
 
@@ -80,3 +99,4 @@ CREATE TABLE IF NOT EXISTS checklist (
        substation_id INT, FOREIGN KEY (substation_id) REFERENCES substation (substation_id),
        questions NVARCHAR(100)
 );
+

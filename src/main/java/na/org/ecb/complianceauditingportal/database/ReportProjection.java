@@ -12,5 +12,8 @@ public interface ReportProjection {
 
     UserProjection getUser();
 
-    List<NonComplianceProjection> getNonCompliances();
+//    List<NonComplianceProjection> getNonCompliances();
+
+
+    List<FacilityProjection> getFacilities();
 }

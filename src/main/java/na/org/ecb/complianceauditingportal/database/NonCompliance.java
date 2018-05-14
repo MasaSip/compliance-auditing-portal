@@ -1,8 +1,10 @@
 package na.org.ecb.complianceauditingportal.database;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import na.org.ecb.complianceauditingportal.json.LocalDateTimeSerializer;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -17,11 +19,11 @@ public class NonCompliance {
     @Column(name = "comp_id")
     private Long id;
 
-    @Getter
-    @Setter
-    @ManyToOne
-    @JoinColumn(name = "report_id")
-    private Report report;
+//    @Getter
+//    @Setter
+//    @ManyToOne
+//    @JoinColumn(name = "report_id")
+//    private Report report;
 
     //private Long questionId; // @todo add here link to question in database
 
@@ -40,9 +42,28 @@ public class NonCompliance {
 
     }
 
-    public NonCompliance(Report report, String comment)
+    public NonCompliance(Facility facility, String comment)
     {
-        this.report = report;
+        this.facility = facility;
         this.comment = comment;
     }
+
+
+
+    @Getter
+    @Setter
+    @Column(name = "name")
+    private String name;
+
+    @Getter
+    @Setter
+    @Column(name = "compliance_date")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private java.time.LocalDateTime compliance_date;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "facility_id")
+    private Facility facility;
 }
