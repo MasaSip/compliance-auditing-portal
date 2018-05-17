@@ -85,4 +85,19 @@ public class Report {
             mappedBy = "report"
     )
     private List<Facility> facilities = new ArrayList<>();
+
+    @Getter
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Column(name = "created_time")
+    private final java.time.LocalDateTime created = LocalDateTime.now();
+
+    @Setter
+    @Getter
+    @Column(name = "licensee")
+    private String licensee;
+
+    @Setter
+    @Getter
+    @Column(name = "status")
+    private String status;
 }

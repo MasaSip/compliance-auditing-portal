@@ -46,7 +46,10 @@ CREATE TABLE IF NOT EXISTS report(
        senior_engineer_email NVARCHAR(50),
        manager_email NVARCHAR(50),
        general_manager_email NVARCHAR(50),
-       ceo_email NVARCHAR(50)
+       ceo_email NVARCHAR(50),
+       created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       licensee NVARCHAR(50),
+       status NVARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS facility (

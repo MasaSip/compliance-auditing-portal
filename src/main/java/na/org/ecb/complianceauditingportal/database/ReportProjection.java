@@ -16,4 +16,13 @@ public interface ReportProjection {
 
 
     List<FacilityProjection> getFacilities();
+
+
+    String getSenior_engineer_email();
+    String getManager_email();
+    String getGeneral_manager_email();
+    String getCeo_email();
+
+    String getLicensee();
+    String getStatus();
 }
